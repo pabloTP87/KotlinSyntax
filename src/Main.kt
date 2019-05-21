@@ -6,10 +6,10 @@ fun main(){
     var numEnemy: Int
 
     // Clases
-    var enemy = Enemy()
-    var player = Player(10,1000)
-    var map1 = Map(10,10) // Mapa del jugador
-    var map2 = Map(10,10) // Mapa del enemigo
+    val enemy = Enemy()
+    val player = Player(10,1000)
+    val map1 = Map(10,10) // Mapa del jugador
+    val map2 = Map(10,10) // Mapa del enemigo
 
     var mapPlayer = map1.createMap(nivel) // el mapa del jugador esta encima del mapa de los enemigos
     var mapEnemy = map2.createMap(nivel)
@@ -40,7 +40,7 @@ fun main(){
         println("4 -> Izquierda")
         println("6 -> Derecha")
 
-        var opcion = readLine()?.toInt() // Pedimos el ingreso de un numero al usuario
+        val opcion = readLine()?.toInt() // Pedimos el ingreso de un numero al usuario
 
         // Segun la opción, asignamos un metodo de movimiento
         when(opcion){
