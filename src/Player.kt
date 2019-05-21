@@ -3,6 +3,7 @@ class Player (var vidas: Int, var puntaje: Int){
     var posX = 0
     var posY = 0
 
+    // Movimiento del jugador hacia arriba
     fun moveUp(map: Array<Array<String>>): Array<Array<String>>{
 
         if(posY<1){
@@ -14,6 +15,7 @@ class Player (var vidas: Int, var puntaje: Int){
         return map
     }
 
+    // Movimiento del jugador hacia abajo
     fun moveDown(long: Int, map: Array<Array<String>>): Array<Array<String>>{
 
         if(posY>long-2){
@@ -25,6 +27,7 @@ class Player (var vidas: Int, var puntaje: Int){
         return map
     }
 
+    // Movimiento del jugador hacia la izquierda
     fun moveLeft(map: Array<Array<String>>): Array<Array<String>>{
 
         if(posX<1){
@@ -36,6 +39,7 @@ class Player (var vidas: Int, var puntaje: Int){
         return map
     }
 
+    // Movimiento del jugador hacia la derecha
     fun moveRight(long: Int, map: Array<Array<String>>): Array<Array<String>>{
 
         if(posX>long-2){

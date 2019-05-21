@@ -4,27 +4,30 @@ fun main(){
     var impacto = 0
     var avanza = 0
     var numEnemy: Int
+
+    // Clases
     var enemy = Enemy()
     var player = Player(10,1000)
-    var map1 = Map(10,10)
-    var map2 = Map(10,10)
+    var map1 = Map(10,10) // Mapa del jugador
+    var map2 = Map(10,10) // Mapa del enemigo
 
-    var mapPlayer = map1.createMap(nivel)
+    var mapPlayer = map1.createMap(nivel) // el mapa del jugador esta encima del mapa de los enemigos
     var mapEnemy = map2.createMap(nivel)
 
     do {
-        numEnemy = enemy.randomEnemy(nivel,mapEnemy)
+        numEnemy = enemy.randomEnemy(nivel,mapEnemy) // Se crean los enemigos aleatorios en mapEnemy
     }while (numEnemy<nivel-2)
 
-    mapPlayer[0][0] = "[x]"
+    mapPlayer[0][0] = "[x]" // Jugador representado con "x"
 
     do {
-        mapPlayer[nivel-1][nivel-1] = "[!]"
+        mapPlayer[nivel-1][nivel-1] = "[!]" // Ultima posicion en el mapa, representa la meta.
 
         println("NIVEL: ${nivel-4}")
         println("VIDAS: ${player.vidas}")
         println("PUNTAJE: ${player.puntaje}")
 
+        // Dibujamos el mapa del jugador
         for (x in 0..nivel){
             for (y in 0..nivel){
                 print(mapPlayer[x][y])
@@ -37,11 +40,12 @@ fun main(){
         println("4 -> Izquierda")
         println("6 -> Derecha")
 
-        var opcion = readLine()?.toInt()
+        var opcion = readLine()?.toInt() // Pedimos el ingreso de un numero al usuario
 
+        // Segun la opción, asignamos un metodo de movimiento
         when(opcion){
 
-            8-> {mapPlayer = map1.createMap(nivel)
+            8-> {mapPlayer = map1.createMap(nivel) // creamos el mapa nuevamente y movemos al jugador
 
                 player.moveUp(mapPlayer)
             }
@@ -64,6 +68,7 @@ fun main(){
             else -> println("MOVIMIENTO INVALIDO!!")
         }
 
+        // Evaluamos la colisión del jugador con los enemígos
         for (y in 0..nivel){
             for (x in 0..nivel){
                 if (mapPlayer[y][x].equals("[x]") && mapEnemy[y][x].equals("[0]")){
@@ -75,12 +80,14 @@ fun main(){
             }
         }
 
+        // evaluamos si el jugador llega a la meta
         if (mapPlayer[nivel-1][nivel-1] == "[x]"){
             nivel +=1
             player.puntaje +=100
             avanza +=1
         }
 
+        // si llega a la meta y avanza de nivel se crea el siguiente escenario y se reinician los parametros
         if (avanza == 1){
             enemy.numEnemys = 0
             mapPlayer = map1.createMap(nivel)
@@ -97,6 +104,7 @@ fun main(){
             }while (numEnemy<nivel-2)
         }
 
+        // Si hay colisión se reinicia la posición del jugador y se crean nuevamente enemígos aleatorios
         if (impacto == 1){
             enemy.numEnemys = 0
 

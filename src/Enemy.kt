@@ -17,16 +17,16 @@ class Enemy {
         if (enemyPosX == 0 && enemyPosY == 0){
             map[enemyPosY+1][0] = "[0]"
 
-        // si enemyPos en los ejes X e Y saca la ultima posición del mapa, movemos a la izquierda en el eje X (X=-1)
+        // si enemyPos en los ejes X e Y saca la última posición del mapa, movemos a la izquierda en el eje X (X=-1)
         }else if (enemyPosY == cantidad-1 && enemyPosX == cantidad-1){
 
             map[cantidad-1][enemyPosX-1] = "[0]"
 
         }else{
-
+            // si no es ningun caso, se muestran los enemigos aleatoriamente en el mapa
             map[enemyPosY][enemyPosX] = "[0]"
         }
-
+        // esta función debe ir incluída en un bucle do while, para sumar numEnemys según sea requerido
         this.numEnemys = numEnemys+1
 
         return this.numEnemys
